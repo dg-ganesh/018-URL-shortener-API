@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>URL Shortener</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- =====================================================
+             HEADER
+             ===================================================== -->
+
+        <header class="header">
+
+            <h1>URL Shortener</h1>
+
+            <p>
+                Create and analyze shortened URLs.
+            </p>
+
+        </header>
+
+
+        <!-- =====================================================
+             PART 1 — CREATE SHORT URL
+             ===================================================== -->
+
+        <section class="card">
+
+            <h2>URL Shortener</h2>
+
+            <form id="url-form">
+
+                <!-- Original URL -->
+
+                <div class="form-group">
+
+                    <label for="original-url">
+                        Original URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="original-url"
+                        name="original-url"
+                        placeholder="https://www.example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Custom Alias -->
+
+                <div class="form-group">
+
+                    <label for="custom-alias">
+                        Custom Alias
+                        <span>(optional)</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="custom-alias"
+                        name="custom-alias"
+                        placeholder="my-company"
+                    >
+
+                </div>
+
+
+                <!-- Expiration -->
+
+                <div class="form-group">
+
+                    <label for="expires-at">
+                        Expiration
+                        <span>(optional)</span>
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="expires-at"
+                        name="expires-at"
+                    >
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    id="shorten-button"
+                >
+                    Shorten URL
+                </button>
+
+            </form>
+
+
+            <!-- Success / Error Message -->
+
+            <div
+                id="message"
+                class="message"
+                hidden
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CREATED SHORT URL
+             ===================================================== -->
+
+        <section
+            id="result-section"
+            class="card result-card"
+            hidden
+        >
+
+            <h2>Your Short URL</h2>
+
+            <div class="result-row">
+
+                <input
+                    type="text"
+                    id="short-url"
+                    readonly
+                >
+
+                <button
+                    type="button"
+                    id="copy-button"
+                >
+                    Copy
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PART 2 — ANALYTICS LOOKUP
+             ===================================================== -->
+
+        <section class="card">
+
+            <h2>Your URL Analytics</h2>
+
+            <p class="section-description">
+                Enter any existing short URL to view its analytics.
+            </p>
+
+
+            <!-- Analytics URL Input -->
+
+            <div class="analytics-input-row">
+
+                <input
+                    type="text"
+                    id="analytics-url"
+                    placeholder="http://localhost:8000/front-end"
+                >
+
+                <button
+                    type="button"
+                    id="analytics-copy-button"
+                >
+                    Copy
+                </button>
+
+            </div>
+
+
+            <!-- Get Analytics -->
+
+            <button
+                type="button"
+                id="get-analytics-button"
+                class="analytics-action-button"
+            >
+                Get Analytics
+            </button>
+
+        </section>
+
+
+        <!-- =====================================================
+             ANALYTICS RESULTS
+             ===================================================== -->
+
+        <section
+            id="analytics-section"
+            class="card"
+            hidden
+        >
+
+            <div class="analytics-header">
+
+                <div>
+
+                    <h2>URL Analytics</h2>
+
+                    <p class="analytics-url">
+
+                        Short URL:
+                        <strong id="analytics-short-url">
+                            -
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="refresh-analytics-button"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <!-- Total Clicks -->
+
+                <div class="analytics-item">
+
+                    <span>Total Clicks</span>
+
+                    <strong id="total-clicks">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- First Click -->
+
+                <div class="analytics-item">
+
+                    <span>First Click</span>
+
+                    <strong id="first-clicked-at">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <!-- Last Click -->
+
+                <div class="analytics-item">
+
+                    <span>Last Click</span>
+
+                    <strong id="last-clicked-at">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
